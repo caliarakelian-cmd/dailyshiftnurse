@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DailyShift | Your Personal Nursing Coach</title>
+
+  <meta
+    name="description"
+    content="DailyShift supports nurses with daily inspiration, clinical pearls, leadership insights, healthy habits, and health challenges."
+  >
+
+  <style>
+    :root {
+      --navy: #153b5c;
+      --teal: #1f8a8a;
+      --sage: #a8d5c2;
+      --warm-white: #fafbfc;
+      --charcoal: #2f3a45;
+      --light-gray: #e8eef2;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navigation {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: var(--navy);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+    }
+
+    .brand-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-name span {
+      color: var(--teal);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    nav a {
+      color: var(--navy);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--teal);
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at top right, rgba(168, 213, 194, 0.55), transparent 36%),
+        linear-gradient(135deg, var(--navy), #205778);
+      color: var(--white);
+      padding: 100px 0 90px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 7px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+
+    h1 span {
+      color: var(--sage);
+    }
+
+    .hero h2 {
+      margin: 0 0 18px;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-weight: 600;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 0 30px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .button:hover,
+    .button:focus {
+      transform: translateY(-2px);
+      opacity: 0.94;
+    }
+
+    .button-primary {
+      background: var(--sage);
+      color: var(--navy);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      color: var(--white);
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: #5b6974;
+      font-size: 1.05rem;
+    }
+
+    .features {
+      background: var(--white);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 26px 22px;
+      border: 1px solid var(--light-gray);
+      border-radius: 16px;
+      background: var(--warm-white);
+      box-shadow: 0 12px 30px rgba(21, 59, 92, 0.07);
+    }
+
+    .card-icon {
+      margin-bottom: 14px;
+      font-size: 1.8rem;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: #5f6b75;
+      font-size: 0.95rem;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .mission-panel {
+      padding: 34px;
+      border-radius: 20px;
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .mission-panel h3 {
+      margin-top: 0;
+      font-size: 1.65rem;
+    }
+
+    .mission-panel p {
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .coming-soon {
+      background: #eef7f3;
+    }
+
+    .coming-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .coming-card {
+      padding: 32px;
+      border-radius: 18px;
+      background: var(--white);
+      border-top: 5px solid var(--teal);
+    }
+
+    .coming-card h3 {
+      margin: 0 0 10px;
+      color: var(--navy);
+    }
+
+    .community {
+      background: var(--teal);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .community h2 {
+      margin-top: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .community p {
+      max-width: 700px;
+      margin: 0 auto 22px;
+    }
+
+    footer {
+      background: #102f49;
+      color: rgba(255, 255, 255, 0.82);
+      padding: 34px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .signature {
+      color: var(--sage);
+      font-weight: 800;
+    }
+
+    @media (max-width: 950px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mission-grid,
+      .coming-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .navigation {
+        padding: 15px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      .hero {
+        padding: 76px 0 70px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 62px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navigation">
+      <a class="brand" href="#top" aria-label="DailyShift homepage">
+        <div class="brand-icon" aria-hidden="true">🩺</div>
+        <div class="brand-name">Daily<span>Shift</span></div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#mission">Mission</a>
+        <a href="#coming-soon">Coming Soon</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="eyebrow">Created for nurses</div>
+
+        <h1>Daily<span>Shift</span></h1>
+
+        <h2>Your Personal Nursing Coach</h2>
+
+        <p>
+          DailyShift delivers daily inspiration, practical clinical pearls,
+          leadership insights, healthy habits, and engaging health challenges
+          designed to help nurses grow—one shift at a time.
+        </p>
+
+        <div class="button-row">
+          <a class="button button-primary" href="#features">
+            Explore DailyShift
+          </a>
+
+          <a class="button button-secondary" href="mailto:dailyshiftapp@gmail.com">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <h2>A few meaningful minutes for every shift.</h2>
+
+          <p>
+            DailyShift supports professional growth, confidence, leadership,
+            and well-being through concise content created with nurses in mind.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">💙</div>
+            <h3>Daily Inspiration</h3>
+            <p>
+              Encouraging messages that remind nurses their knowledge,
+              compassion, and presence matter.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🩺</div>
+            <h3>Clinical Pearl</h3>
+            <p>
+              Brief, practical nursing insights that reinforce safe practice
+              and lifelong learning.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⭐</div>
+            <h3>Leadership Minute</h3>
+            <p>
+              Short lessons focused on communication, teamwork, accountability,
+              confidence, and compassionate leadership.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🌿</div>
+            <h3>Healthy Habit</h3>
+            <p>
+              Simple reminders that encourage nurses to care for themselves
+              while continuing to care for others.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🧠</div>
+            <h3>Health Challenge</h3>
+            <p>
+              Engaging health and anatomy questions that make learning
+              approachable and enjoyable.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="mission">
+      <div class="container mission-grid">
+        <div class="section-heading">
+          <h2>Helping nurses grow—one shift at a time.</h2>
+
+          <p>
+            Nursing is deeply rewarding, demanding, and constantly evolving.
+            DailyShift was created to provide nurses with encouragement,
+            practical knowledge, leadership development, and wellness support
+            that fit into real life.
+          </p>
+
+          <p>
+            Whether someone is a nursing student, new graduate, experienced
+            bedside nurse, charge nurse, or emerging healthcare leader,
+            DailyShift is designed to support continued growth.
+          </p>
+        </div>
+
+        <aside class="mission-panel">
+          <h3>The DailyShift Promise</h3>
+
+          <p>
+            Every nurse deserves encouragement. Every shift is an opportunity
+            to learn. Every interaction should help a nurse feel more confident,
+            supported, prepared, or inspired.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="coming-soon" id="coming-soon">
+      <div class="container">
+        <div class="section-heading">
+          <h2>The DailyShift platform is growing.</h2>
+
+          <p>
+            Alexa is only the beginning. New ways to learn, reflect, and grow
+            are being developed for the nursing community.
+          </p>
+        </div>
+
+        <div class="coming-grid">
+          <article class="coming-card">
+            <h3>📱 DailyShift Mobile App — Coming Soon</h3>
+
+            <p>
+              Access daily inspiration, clinical pearls, leadership insights,
+              healthy habits, health challenges, favorites, and future Shift
+              Reflection tools wherever you go.
+            </p>
+          </article>
+
+          <article class="coming-card">
+            <h3>🎙️ DailyShift Podcast — Coming Soon</h3>
+
+            <p>
+              Short, meaningful episodes created to encourage, educate, and
+              inspire nurses before, during, or after every shift.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="community">
+      <div class="container">
+        <h2>Join the DailyShift community.</h2>
+
+        <p>
+          Follow the journey and be among the first to learn about the
+          DailyShift mobile app, podcast, leadership resources, and future
+          nursing tools.
+        </p>
+
+        <a class="button button-primary" href="mailto:dailyshiftapp@gmail.com">
+          Email DailyShift
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <strong>DailyShift</strong><br>
+        <span class="signature">
+          Keep Caring. Keep Learning. Keep Leading.
+        </span>
+      </div>
+
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="mailto:dailyshiftapp@gmail.com">Contact</a>
+      </div>
+
+      <div>
+        &copy; 2026 DailyShift
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
